@@ -46,9 +46,9 @@ LEFT JOIN Portfolio..BANHANG_201904 B
 	ON A.CUS_ID = B.CUS_ID
 WHERE B.CUS_ID IS NULL```
 
-![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/4d0905bb-1748-4502-ac31-1fc3b94ae333)
+`![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/4d0905bb-1748-4502-ac31-1fc3b94ae333)`
 
-**2. Compare each customer's purchase amount in April and June.**
+`**2. Compare each customer's purchase amount in April and June.**`
 
 ```SELECT
 	ISNULL(A.CUS_ID, B.CUS_ID) CUS_ID,
