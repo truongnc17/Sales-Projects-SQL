@@ -24,7 +24,7 @@ Here are my SQL queries:
 
 **1. Use the newly created April and June sales table to find a list of customers who bought in April but did not buy in June and vice versa.**
 
-`SELECT *
+```SELECT *
 INTO Task..BANHANG_201904
 FROM Task..BANHANG
 WHERE YEAR(TRANS_DATE) = 2019 AND MONTH(TRANS_DATE) = 04
@@ -44,7 +44,7 @@ SELECT A.CUS_ID
 FROM Task..BANHANG_201906 A
 LEFT JOIN Portfolio..BANHANG_201904 B
 	ON A.CUS_ID = B.CUS_ID
-WHERE B.CUS_ID IS NULL`
+WHERE B.CUS_ID IS NULL```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/4d0905bb-1748-4502-ac31-1fc3b94ae333)
 
