@@ -50,7 +50,7 @@ WHERE B.CUS_ID IS NULL```
 
 **2. Compare each customer's purchase amount in April and June.**
 
-`SELECT
+```SELECT
 	ISNULL(A.CUS_ID, B.CUS_ID) CUS_ID,
 	ISNULL(A.TOTAL_AMT_04,0) TOTAL_AMT_04,
 	ISNULL(B.TOTAL_AMT_06,0) TOTAL_AMT_06,
@@ -71,13 +71,13 @@ SELECT
 FROM Task..BANHANG_201906
 GROUP BY CUS_ID
 ) B
-ON A.CUS_ID = B.CUS_ID`
+ON A.CUS_ID = B.CUS_ID```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/5ad97fa1-00e1-48f5-ab19-16ae7bddc57f)
 
 **3. Calculate the sum of the June and April net gains for each store.**
 
-`SELECT
+```SELECT
 	ISNULL(A.STOREDID, B.STOREDID) STOREDID,
 	ISNULL(A.TOTAL_AMT_04,0) TOTAL_AMT_04,
 	ISNULL(B.TOTAL_AMT_06,0) TOTAL_AMT_06,
@@ -98,13 +98,13 @@ SELECT
 FROM Task..BANHANG_201906
 GROUP BY STOREDID
 ) B
-ON A.STOREDID = B.STOREDID`
+ON A.STOREDID = B.STOREDID```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/22f9f376-1432-400f-bbcb-9be0f303feee)
 
 **4. Take out the total transaction amount of each store in 2019 and see what percentage it represents compared to the total transaction amount of each store in the sales table.**
 
-`SELECT 
+```SELECT 
 	ISNULL(A.STOREDID, B.STOREDID) STOREDID,
 	ISNULL(A.AMT_2019,0) AMT_2019,
 	ISNULL(B.TOTAL_AMT,0) TOTAL_AMT,
@@ -126,13 +126,13 @@ SELECT
 FROM Task..BANHANG
 GROUP BY STOREDID
 ) B
-ON A.STOREDID = B.STOREDID`
+ON A.STOREDID = B.STOREDID```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/1f46e025-1030-41fa-bc63-00006b9e923a)
 
 **5. Get the largest transaction amount of each employee with each store in 2019 and see what proportion of the total transaction of that employee in the store in 2019**
 
-`SELECT 
+```SELECT 
 	ISNULL(A.SALE_ID, B.SALE_ID) SALE_ID,
 	ISNULL(A.STOREDID, B.STOREDID) STOREDID,
 	ISNULL(A.MAX_AMT,0) MAX_AMT,
@@ -160,13 +160,13 @@ GROUP BY STOREDID, SALE_ID
 ) B
 ON 
 	A.SALE_ID = B.SALE_ID AND
-	A.STOREDID = B.STOREDID`
+	A.STOREDID = B.STOREDID```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/f2bfaa88-4f69-4064-8f21-966f726c2896)
 
 **6. Calculate the total transaction amount of each employee with each store in each month of 2019 to see what proportion of the store's total revenue in each of those months of 2019.**
 
-`SELECT
+```SELECT
 	ISNULL(A.STOREDID,B.STOREDID) STOREDID,
 	A.SALE_ID,
 	ISNULL(A.[MONTH],B.[MONTH]) [MONTH],
@@ -201,26 +201,26 @@ GROUP BY
 ) B
 ON 
 	A.STOREDID = B.STOREDID AND
-	A.[MONTH] = B.[MONTH]`
+	A.[MONTH] = B.[MONTH]```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/a85c4168-e69c-4dd2-9dd2-81b6a7905c08)
 
 **7. Update table Discount column MucChietKhau = 0.01 if MucToiThieu from 0 > 5, MucChietKhau = 0.02 if MucToiThieu from 6 > 10, MucChietKhau = 0.03 if MucToiThieu from 11 > 30, the remaining discount is 0.05**
 
-`UPDATE Task..DISCOUNT 
+```UPDATE Task..DISCOUNT 
 SET MUC_CHIET_KHAU = 
 	CASE
 		WHEN MUC_TOI_THIEU BETWEEN 0 AND 5 THEN 0.01
 		WHEN MUC_TOI_THIEU BETWEEN 6 AND 10 THEN 0.02
 		WHEN MUC_TOI_THIEU BETWEEN 11 AND 30 THEN 0.03
 		ELSE 0.05
-	END`
+	END```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/fd7b7391-4f08-413e-b9ba-4fd27bd1d4fe)
 
 **8. Get the transaction information with the largest amount by day and by store**
 
-`WITH T AS
+```WITH T AS
 (
 SELECT 
 	*,
@@ -235,13 +235,13 @@ SELECT
 	LCY_AMT
 FROM T
 WHERE RNK = 1
-ORDER BY CAST(RIGHT(STOREDID,(LEN(STOREDID) - LEN('STORE '))) AS INT), TRANS_DATE`
+ORDER BY CAST(RIGHT(STOREDID,(LEN(STOREDID) - LEN('STORE '))) AS INT), TRANS_DATE```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/473936a0-0e7a-4862-a274-26c8a84e5130)
 
 **9. Get the customer with the largest amount of money by day and by store**
 
-`WITH T AS 
+```WITH T AS 
 (
 SELECT 
 	STOREDID,
@@ -258,7 +258,7 @@ GROUP BY
 SELECT *
 FROM T 
 WHERE RNK = 1
-ORDER BY CAST(RIGHT(STOREDID,(LEN(STOREDID) - LEN('STORE '))) AS INT), TRANS_DATE`
+ORDER BY CAST(RIGHT(STOREDID,(LEN(STOREDID) - LEN('STORE '))) AS INT), TRANS_DATE```
 
 ![image](https://github.com/truongnc17/Sales-Projects-SQL/assets/131191379/8a181bf8-d8d2-4dd9-bce5-89371b8bd305)
 
